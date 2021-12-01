@@ -1,4 +1,5 @@
 
+# Checks if 6 * 7 is equal to 42, if not return the math below is wrong
 require "rails_helper"
 
 RSpec.describe "The math below is wrong..." do
@@ -7,6 +8,7 @@ RSpec.describe "The math below is wrong..." do
   end
 end
 
+# Checks if string is empty, if it isnt return should provide an empty string
 RSpec.describe "hello spec" do
     # ...
     describe String do
