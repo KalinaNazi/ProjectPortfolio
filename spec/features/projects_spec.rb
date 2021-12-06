@@ -3,6 +3,29 @@ require 'rails_helper'
 
 # Creating new project on form fills title with what user typed for title
 RSpec.feature "Projects", type: :feature do
+
+  #Logging in for user?
+  context "Login" do
+    scenario "should sign up" do
+      visit root_path
+      click_link 'Sign up'
+      within("form") do
+        fill_in "Email", with: "testing@test.com"
+        fill_in "Password", with: "123456"
+        fill_in "Password confirmation", with: "123456"
+        click_button "Sign up"
+      end
+      expect(page).to have_content("Welcome! You have signed up successfully!")
+    end
+
+    #Creates factory bot and makes sure it signs in as user
+    scenario "should log in" do
+      user = FactoryBot.create(:user)
+      login_as(user)
+      visit root_pathexpect(page).to have_content("Logged in")
+    end
+  end
+
   context "Create new project" do
     before(:each) do
       user = FactoryBot.create(:user)
