@@ -75,9 +75,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem 'mini_racer'
+
   
 group :development, :test do
   gem 'rspec-rails', '~> 3.7'
 end
 
 gem 'devise'
+
+gem 'jquery-rails'
+
+gem 'bootstrap', '~> 5.1.3'
