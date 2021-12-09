@@ -11,6 +11,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
+
   # Clicking show shows the title and description for a project
   context "GET #show" do
     let!(:project) { Project.create(title: "Test title", description: "Test description") }
@@ -20,4 +21,6 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 end
+
+
 

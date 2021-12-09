@@ -7,6 +7,9 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+
+require 'devise'
+require_relative 'support/controller_macros'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -22,7 +25,8 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -35,6 +39,11 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include Devise::Test::IntegrationHelpers, :type => :feature
+  config.include FactoryBot::Syntax::Methods
+  config.extend ControllerMacros, :type => :controller
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -68,4 +77,8 @@ SimpleCov.start 'rails' do
   add_filter '/bin/'
   add_filter '/db/'
   add_filter '/spec/' # for rspec
+  filters.clear# This will remove the :root_filter and :bundler_filter that come via simplecov's defaults
+  add_filter do |src|
+  !(src.filename =~ /^#{SimpleCov.root}/) unless src.filename =~ /my_engine/
+end
 end

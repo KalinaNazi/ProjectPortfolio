@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
+
+<!-- Navbar with button home, and button sign up and log in -->
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <ul class="navbar-nav">
+    <a href="/" class="btn btn-info" role="button">Home</a>
+  </ul>
+  <ul class="navbar-nav mr-auto">
+  </ul>
+  <button type="button" class="btn btn-lg btn-primary" disabled>Primary button</button>
+  <button type="button" class="btn btn-secondary btn-lg" disabled>Button</button>
+</nav>
+
+<div class="container">
   <head>
-    <title>Cs3300</title>
+    <title>Projects</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
+</div>
 
+<div class="container">
   <body>
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.email %></strong>.
+      <%= link_to 'Edit profile', edit_user_registration_path, class: 'btn btn-primary'  %>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-primary'  %>
+    <% else %>
+      <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
+      <%= link_to 'Log in', new_user_session_path, class: 'btn btn-primary'%>
+    <% end %>
     <%= yield %>
   </body>
+</div>
 </html>
