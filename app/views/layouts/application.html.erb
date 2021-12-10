@@ -30,19 +30,25 @@
         <% end %>
     </div>
 
+    <!-- Signed in can see edit and log out buttons-->
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link " href="#"><%= link_to "Edit Profile", edit_user_registration_path, class: 'btn btn-warning' %>  </a>
+            <a class="nav-link " href="#"><%= link_to "Edit Profile", edit_user_registration_path, class: 'btn btn-outline-warning' %>  </a>
           </li>
         <li class="nav-item">
           <a class="nav-link " href="#"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'  %>  </a>
         </li>
       
+        <!-- Not signed in cant see edit and log out buttons-->
         <% else %>
-          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
-          <%= link_to 'Log in', new_user_session_path, class: 'btn btn-primary'%>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary2' %></a>
+          </li>
+          <li>
+            <a class="nav-link" href="#"><%= link_to 'Log in', new_user_session_path, class: 'btn btn-info'%></a>
+          </li>
         <% end %>
       </ul>
     </div>
