@@ -82,7 +82,6 @@ group :development, :test do
 end
 
 gem 'devise'
-
 gem 'jquery-rails'
-
-gem 'bootstrap', '~> 5.1.3'
+gem 'bootstrap', '~> 4.0.0'
+gem 'sassc-rails', '>= 2.1.0'

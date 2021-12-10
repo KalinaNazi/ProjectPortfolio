@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+<h1 align="center">
+  <strong><%= @project.title %></strong>
+</h1>
 
-<p>
-  <strong>Description:</strong>
+<div class="container p-3 my-3 border border-info" align="center">
   <%= @project.description %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<p align="center">
+  <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-primary'%> |
+  <%= link_to 'Back', projects_path, class: 'btn btn-primary' %>
+</p>
